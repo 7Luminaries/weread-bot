@@ -2,9 +2,9 @@ name: Auto Reading Bot
 
 on:
   # 定时触发 - Fork 后如需自动定时运行，请取消下方 schedule 注释
-  # schedule:
-  #   - cron: '0 0 * * *'    # UTC 00:00 = 北京时间 08:00
-  #   - cron: '0 12 * * *'   # UTC 12:00 = 北京时间 20:00
+  schedule:
+    - cron: '50 21 * * *'    # UTC 00:00 = 北京时间 08:00
+    - cron: '12 03 * * *'   # UTC 12:00 = 北京时间 20:00
   
   # 拉取请求触发，用于测试阅读
   pull_request:
@@ -56,7 +56,7 @@ on:
 jobs:
   auto-reading:
     runs-on: ubuntu-latest
-    timeout-minutes: 120  # 2小时超时
+    timeout-minutes: 180  # 2小时超时
     
     steps:
     - name: Checkout code
@@ -110,7 +110,7 @@ jobs:
             book_switch_cooldown: 3600
 
         human_simulation:
-          enabled: false
+          enabled: true
           reading_speed_variation: true
           break_probability: 0.15
           break_duration: "10-20"
